@@ -1,0 +1,818 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=None">
+  <style type="text/css">
+td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
+pre { line-height: 125%; }
+body .hll { background-color: #ffffcc }
+body  { background: #f8f8f8; }
+body .c { color: #408080; font-style: italic } /* Comment */
+body .err { border: 1px solid #FF0000 } /* Error */
+body .k { color: #008000; font-weight: bold } /* Keyword */
+body .o { color: #666666 } /* Operator */
+body .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+body .cp { color: #BC7A00 } /* Comment.Preproc */
+body .c1 { color: #408080; font-style: italic } /* Comment.Single */
+body .cs { color: #408080; font-style: italic } /* Comment.Special */
+body .gd { color: #A00000 } /* Generic.Deleted */
+body .ge { font-style: italic } /* Generic.Emph */
+body .gr { color: #FF0000 } /* Generic.Error */
+body .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+body .gi { color: #00A000 } /* Generic.Inserted */
+body .go { color: #888888 } /* Generic.Output */
+body .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+body .gs { font-weight: bold } /* Generic.Strong */
+body .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+body .gt { color: #0044DD } /* Generic.Traceback */
+body .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+body .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+body .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+body .kp { color: #008000 } /* Keyword.Pseudo */
+body .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+body .kt { color: #B00040 } /* Keyword.Type */
+body .m { color: #666666 } /* Literal.Number */
+body .s { color: #BA2121 } /* Literal.String */
+body .na { color: #7D9029 } /* Name.Attribute */
+body .nb { color: #008000 } /* Name.Builtin */
+body .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+body .no { color: #880000 } /* Name.Constant */
+body .nd { color: #AA22FF } /* Name.Decorator */
+body .ni { color: #999999; font-weight: bold } /* Name.Entity */
+body .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+body .nf { color: #0000FF } /* Name.Function */
+body .nl { color: #A0A000 } /* Name.Label */
+body .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+body .nt { color: #008000; font-weight: bold } /* Name.Tag */
+body .nv { color: #19177C } /* Name.Variable */
+body .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+body .w { color: #bbbbbb } /* Text.Whitespace */
+body .mf { color: #666666 } /* Literal.Number.Float */
+body .mh { color: #666666 } /* Literal.Number.Hex */
+body .mi { color: #666666 } /* Literal.Number.Integer */
+body .mo { color: #666666 } /* Literal.Number.Oct */
+body .sb { color: #BA2121 } /* Literal.String.Backtick */
+body .sc { color: #BA2121 } /* Literal.String.Char */
+body .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+body .s2 { color: #BA2121 } /* Literal.String.Double */
+body .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+body .sh { color: #BA2121 } /* Literal.String.Heredoc */
+body .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+body .sx { color: #008000 } /* Literal.String.Other */
+body .sr { color: #BB6688 } /* Literal.String.Regex */
+body .s1 { color: #BA2121 } /* Literal.String.Single */
+body .ss { color: #19177C } /* Literal.String.Symbol */
+body .bp { color: #008000 } /* Name.Builtin.Pseudo */
+body .vc { color: #19177C } /* Name.Variable.Class */
+body .vg { color: #19177C } /* Name.Variable.Global */
+body .vi { color: #19177C } /* Name.Variable.Instance */
+body .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+  </style>
+</head>
+<body>
+<h2></h2>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/usr/bin/python3</span>
+<span style="color: #408080; font-style: italic"># -*- coding: utf-8 -*-</span>
+
+<span style="color: #408080; font-style: italic"># Form implementation generated from reading ui file &#39;rasGUI.ui&#39;</span>
+<span style="color: #408080; font-style: italic">#</span>
+<span style="color: #408080; font-style: italic"># Created by: PyQt5 UI code generator 5.7</span>
+<span style="color: #408080; font-style: italic">#</span>
+<span style="color: #408080; font-style: italic"># WARNING! All changes made in this file will be lost!</span>
+
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">PyQt5</span> <span style="color: #008000; font-weight: bold">import</span> QtCore, QtGui, QtWidgets
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">socketserver</span><span style="color: #666666">,</span><span style="color: #0000FF; font-weight: bold">subprocess</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">RPi.GPIO</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">GPIO</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">_thread</span> <span style="color: #008000; font-weight: bold">import</span> start_new_thread
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">time</span> <span style="color: #008000; font-weight: bold">import</span> sleep
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">signal</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">sys</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">PyQt5</span>
+
+<span style="color: #408080; font-style: italic"># prev angle strength</span>
+a <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+angle <span style="color: #666666">=</span> <span style="color: #666666">90</span>
+preAngle <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+preSpeed <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+speed <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+strength <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+add <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;&quot;</span>
+connected <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;&quot;</span>
+enabled <span style="color: #666666">=</span> <span style="color: #008000">True</span>
+
+
+<span style="color: #408080; font-style: italic"># Servo config</span>
+GPIO<span style="color: #666666">.</span>setwarnings(<span style="color: #008000">False</span>)
+GPIO<span style="color: #666666">.</span>setmode(GPIO<span style="color: #666666">.</span>BOARD)
+GPIO<span style="color: #666666">.</span>setup(<span style="color: #666666">3</span>, GPIO<span style="color: #666666">.</span>OUT)
+servopwm <span style="color: #666666">=</span> GPIO<span style="color: #666666">.</span>PWM(<span style="color: #666666">3</span>, <span style="color: #666666">50</span>)
+servopwm<span style="color: #666666">.</span>start(<span style="color: #666666">7</span>)
+
+<span style="color: #408080; font-style: italic"># DC motor config</span>
+GPIO<span style="color: #666666">.</span>setup(<span style="color: #666666">16</span>,GPIO<span style="color: #666666">.</span>OUT)
+GPIO<span style="color: #666666">.</span>setup(<span style="color: #666666">18</span>,GPIO<span style="color: #666666">.</span>OUT)
+GPIO<span style="color: #666666">.</span>setup(<span style="color: #666666">22</span>,GPIO<span style="color: #666666">.</span>OUT)
+
+motorpwm <span style="color: #666666">=</span> GPIO<span style="color: #666666">.</span>PWM(<span style="color: #666666">22</span>, <span style="color: #666666">50</span>)
+motorpwm<span style="color: #666666">.</span>start(<span style="color: #666666">0</span>)
+
+
+        
+<span style="color: #408080; font-style: italic"># Socket server class</span>
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">MyTCPHandler</span>(socketserver<span style="color: #666666">.</span>StreamRequestHandler):
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">handle</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000; font-weight: bold">while</span> <span style="color: #008000">True</span>:
+            <span style="color: #008000; font-weight: bold">global</span> angle, strength ,speed, a, connected, appui, ui
+            <span style="color: #008000; font-weight: bold">if</span>(<span style="color: #AA22FF; font-weight: bold">not</span> enabled):
+                <span style="color: #408080; font-style: italic"># self.rfile is a file-like object created by the handler;</span>
+                <span style="color: #408080; font-style: italic"># we can now use e.g. readline() instead of raw recv() calls</span>
+                <span style="color: #008000">self</span><span style="color: #666666">.</span>data <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>rfile<span style="color: #666666">.</span>readline()<span style="color: #666666">.</span>strip()
+                <span style="color: #008000; font-weight: bold">if</span>(a<span style="color: #666666">==0</span>):
+                    connected <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Connected ip: &quot;</span><span style="color: #666666">+</span><span style="color: #008000">self</span><span style="color: #666666">.</span>client_address[<span style="color: #666666">0</span>]
+                    appui<span style="color: #666666">.</span>setCon(connected)
+                    a<span style="color: #666666">+=1</span>
+                data <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>data<span style="color: #666666">.</span>decode(<span style="color: #BA2121">&quot;utf-8&quot;</span>)<span style="color: #666666">.</span>rstrip()<span style="color: #666666">.</span>strip(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>)
+                <span style="color: #008000; font-weight: bold">if</span>(data<span style="color: #666666">!=</span> <span style="color: #BA2121">&quot;&quot;</span>):
+                    <span style="color: #008000; font-weight: bold">if</span>(data <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;disconnect&quot;</span>):
+                        <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;restarting&quot;</span>)
+                        a <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+                        <span style="color: #008000">self</span><span style="color: #666666">.</span>close()
+                        sleep(<span style="color: #666666">1</span>)
+                        mainServer()
+                    <span style="color: #008000; font-weight: bold">elif</span>(data <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;gui&quot;</span>):
+                        appui<span style="color: #666666">.</span>hide()
+                        enabled <span style="color: #666666">=</span> <span style="color: #008000">True</span>
+                        ui<span style="color: #666666">.</span>setGui()
+                    <span style="color: #008000; font-weight: bold">else</span>:    
+                        temp <span style="color: #666666">=</span> data<span style="color: #666666">.</span>split(<span style="color: #BA2121">&quot;:&quot;</span>)
+                        angle <span style="color: #666666">=</span> <span style="color: #008000">int</span>(temp[<span style="color: #666666">0</span>])
+                        strength <span style="color: #666666">=</span> <span style="color: #008000">int</span>(temp[<span style="color: #666666">1</span>])
+                        speed <span style="color: #666666">=</span> <span style="color: #008000">float</span>(temp[<span style="color: #666666">2</span>])
+                        appui<span style="color: #666666">.</span>update(speed, angle)
+                        Servo()
+                        Motor()
+
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Ui_AppWindow</span>(QtWidgets<span style="color: #666666">.</span>QWidget):
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">super</span>(Ui_AppWindow, <span style="color: #008000">self</span>)<span style="color: #666666">.</span>__init__()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;background-color:#efefef; color:white;&#39;</span>)
+        <span style="color: #008000; font-weight: bold">global</span> add, angle, speed, connected
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QVBoxLayout()
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>label <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\t\t</span><span style="color: #BA2121">&quot;</span><span style="color: #666666">+</span>add)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>label<span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&quot;color: #005C99;&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addWidget(<span style="color: #008000">self</span><span style="color: #666666">.</span>label)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>label1 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\t\t</span><span style="color: #BA2121">&quot;</span><span style="color: #666666">+</span>connected)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>label1<span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&quot;color: #005C99;&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addWidget(<span style="color: #008000">self</span><span style="color: #666666">.</span>label1)
+
+        palette <span style="color: #666666">=</span> QtGui<span style="color: #666666">.</span>QPalette()
+        palette<span style="color: #666666">.</span>setColor(palette<span style="color: #666666">.</span>WindowText, QtGui<span style="color: #666666">.</span>QColor(<span style="color: #666666">85</span>, <span style="color: #666666">85</span>, <span style="color: #666666">255</span>))
+        palette<span style="color: #666666">.</span>setColor(palette<span style="color: #666666">.</span>Background, QtGui<span style="color: #666666">.</span>QColor(<span style="color: #666666">0</span>, <span style="color: #666666">170</span>, <span style="color: #666666">255</span>))
+        palette<span style="color: #666666">.</span>setColor(palette<span style="color: #666666">.</span>Light, QtGui<span style="color: #666666">.</span>QColor(<span style="color: #666666">0</span>, <span style="color: #666666">92</span>, <span style="color: #666666">153</span>))
+        palette<span style="color: #666666">.</span>setColor(palette<span style="color: #666666">.</span>Dark, QtGui<span style="color: #666666">.</span>QColor(<span style="color: #666666">0</span>, <span style="color: #666666">92</span>, <span style="color: #666666">137</span>))
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLCDNumber(<span style="color: #008000">self</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">100</span>, <span style="color: #666666">100</span>, <span style="color: #666666">64</span>, <span style="color: #666666">23</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;speed&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>display(speed)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>setPalette(palette)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLCDNumber(<span style="color: #008000">self</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">200</span>, <span style="color: #666666">100</span>, <span style="color: #666666">64</span>, <span style="color: #666666">23</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;angle&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>display(angle)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>setPalette(palette)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;Speed&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">100</span>, <span style="color: #666666">70</span>, <span style="color: #666666">47</span>, <span style="color: #666666">25</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;speed_lable&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable<span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;color:#00497a;&#39;</span>)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;Angle&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">200</span>, <span style="color: #666666">70</span>, <span style="color: #666666">47</span>, <span style="color: #666666">25</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;angle_lable&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable<span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;color:#00497a;&#39;</span>)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>hbl <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QHBoxLayout()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>hbl<span style="color: #666666">.</span>addWidget(<span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>hbl<span style="color: #666666">.</span>addWidget(<span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addLayout(<span style="color: #008000">self</span><span style="color: #666666">.</span>hbl)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>hb <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QHBoxLayout()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>hb<span style="color: #666666">.</span>addWidget(<span style="color: #008000">self</span><span style="color: #666666">.</span>speed)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>hb<span style="color: #666666">.</span>addWidget(<span style="color: #008000">self</span><span style="color: #666666">.</span>angle)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addLayout(<span style="color: #008000">self</span><span style="color: #666666">.</span>hb)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setWindowTitle(<span style="color: #BA2121">&quot;RasControl GUI: Android Control&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setLayout(<span style="color: #008000">self</span><span style="color: #666666">.</span>layout)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setGeometry(<span style="color: #666666">100</span>, <span style="color: #666666">100</span>, <span style="color: #666666">400</span>, <span style="color: #666666">200</span>)
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">update</span>(<span style="color: #008000">self</span>, speed, angle):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>display(angle)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>display(speed)
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setIp</span>(<span style="color: #008000">self</span>, add):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>label<span style="color: #666666">.</span>setText(add)
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setCon</span>(<span style="color: #008000">self</span>, c):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>label1<span style="color: #666666">.</span>setText(c)
+        
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Ui_ButtonHelpWindow</span>(QtWidgets<span style="color: #666666">.</span>QWidget):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">super</span>(Ui_ButtonHelpWindow, <span style="color: #008000">self</span>)<span style="color: #666666">.</span>__init__()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;background-color:#005C99; color:white;&#39;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QVBoxLayout()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;Button Control Help:&#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;This tab allows you to control the Raspberry with button.&#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;If you click one of the buttons: &#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;The forward and backward buttons will add or decrease a 20% to the current speed.&#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;The left and right buttons will add or decrease 10° angles.&#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;The stop button will set the speed to 0% and the angle to 90°.&#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setLayout(<span style="color: #008000">self</span><span style="color: #666666">.</span>vb)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setWindowTitle(<span style="color: #BA2121">&quot;RasControl GUI: Button Control Help&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setGeometry(<span style="color: #666666">100</span>, <span style="color: #666666">100</span>, <span style="color: #666666">400</span>, <span style="color: #666666">250</span>)
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Ui_SliderHelpWindow</span>(QtWidgets<span style="color: #666666">.</span>QWidget):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">super</span>(Ui_SliderHelpWindow, <span style="color: #008000">self</span>)<span style="color: #666666">.</span>__init__()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;background-color:#005C99; color:white;&#39;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QVBoxLayout()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;Slider Control Help:&#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;This tab allows you to control the Raspberry with sliders.&#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;You can click or move each slider and based on that, The angle and speed will be set.&#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;If you click on the speed slider, based on the direction of the click the speed &#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;will be increased or decreased by 20%.&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;If you click on the angle slider, based on the direction of the click the angle &quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;will be increased or decreased by 10°.&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>vb<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&#39;The stop button will set the speed to 0% and the angle to 90°.&#39;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setLayout(<span style="color: #008000">self</span><span style="color: #666666">.</span>vb)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setWindowTitle(<span style="color: #BA2121">&quot;RasControl GUI: Slider Control Help&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setGeometry(<span style="color: #666666">100</span>, <span style="color: #666666">100</span>, <span style="color: #666666">400</span>, <span style="color: #666666">250</span>)
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Ui_AboutWindow</span>(QtWidgets<span style="color: #666666">.</span>QWidget):
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">super</span>(Ui_AboutWindow, <span style="color: #008000">self</span>)<span style="color: #666666">.</span>__init__()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;background-color:#003d66; color:white;&#39;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QVBoxLayout()
+        
+        pic <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #008000">self</span>)
+        pic<span style="color: #666666">.</span>setPixmap(QtGui<span style="color: #666666">.</span>QPixmap(<span style="color: #BA2121">&quot;raspberry-pi-logo.png&quot;</span>)<span style="color: #666666">.</span>scaled(<span style="color: #666666">128</span>,<span style="color: #666666">160</span>))
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;About:&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;This app is created as part of the RasControl Project,&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;It allows you to control a DC motor and a servo motor that&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;are connected to the raspberry pi.&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addWidget(QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\t\t</span><span style="color: #BA2121">Created by ©Medyas&quot;</span>))
+
+
+        iset <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #008000">self</span>)
+        iset<span style="color: #666666">.</span>setPixmap(QtGui<span style="color: #666666">.</span>QPixmap(<span style="color: #BA2121">&quot;isetr.png&quot;</span>)<span style="color: #666666">.</span>scaled(<span style="color: #666666">400</span>,<span style="color: #666666">90</span>)) 
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>layout<span style="color: #666666">.</span>addWidget(iset)
+
+        
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>hb <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QHBoxLayout()
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>hb<span style="color: #666666">.</span>addWidget(pic)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>hb<span style="color: #666666">.</span>addLayout(<span style="color: #008000">self</span><span style="color: #666666">.</span>layout)
+
+        
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setWindowTitle(<span style="color: #BA2121">&quot;RasControl GUI: About&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setLayout(<span style="color: #008000">self</span><span style="color: #666666">.</span>hb)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>setGeometry(<span style="color: #666666">100</span>, <span style="color: #666666">100</span>, <span style="color: #666666">400</span>, <span style="color: #666666">200</span>)
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #408080; font-style: italic"># ------------------------------------------------------------------ #</span>
+<span style="color: #408080; font-style: italic"># main windows setup</span>
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Ui_MainWindow</span>(QtWidgets<span style="color: #666666">.</span>QWidget):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setupUi</span>(<span style="color: #008000">self</span>, MainWindow):
+        MainWindow<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;RasControl GUI&quot;</span>)
+        MainWindow<span style="color: #666666">.</span>resize(<span style="color: #666666">780</span>, <span style="color: #666666">460</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>main <span style="color: #666666">=</span> MainWindow
+
+        style <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;background-color:#e6f5ff; color: #003d66; border-radius: 20px; font: bold;&quot;</span>
+        style2 <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;background-color:#003d66; color: #e6f5ff; border-radius: 20px; font: bold;&quot;</span>
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>centralwidget <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QWidget(MainWindow)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>centralwidget<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;centralwidget&quot;</span>)
+
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QTabWidget(<span style="color: #008000">self</span><span style="color: #666666">.</span>centralwidget)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">780</span>, <span style="color: #666666">460</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;tabWidget&quot;</span>)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QWidget()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;tab_1&quot;</span>)
+
+        palette <span style="color: #666666">=</span> QtGui<span style="color: #666666">.</span>QPalette()
+        palette<span style="color: #666666">.</span>setColor(palette<span style="color: #666666">.</span>WindowText, QtGui<span style="color: #666666">.</span>QColor(<span style="color: #666666">85</span>, <span style="color: #666666">85</span>, <span style="color: #666666">255</span>))
+        palette<span style="color: #666666">.</span>setColor(palette<span style="color: #666666">.</span>Background, QtGui<span style="color: #666666">.</span>QColor(<span style="color: #666666">0</span>, <span style="color: #666666">170</span>, <span style="color: #666666">255</span>))
+        palette<span style="color: #666666">.</span>setColor(palette<span style="color: #666666">.</span>Light, QtGui<span style="color: #666666">.</span>QColor(<span style="color: #666666">153</span>, <span style="color: #666666">214</span>, <span style="color: #666666">255</span>))
+        palette<span style="color: #666666">.</span>setColor(palette<span style="color: #666666">.</span>Dark, QtGui<span style="color: #666666">.</span>QColor(<span style="color: #666666">0</span>, <span style="color: #666666">92</span>, <span style="color: #666666">153</span>))
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QSlider(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">50</span>, <span style="color: #666666">20</span>, <span style="color: #666666">51</span>, <span style="color: #666666">300</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>setMinimum(<span style="color: #666666">-100</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>setMaximum(<span style="color: #666666">100</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>setSingleStep(<span style="color: #666666">20</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>setPageStep(<span style="color: #666666">20</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>setProperty(<span style="color: #BA2121">&quot;value&quot;</span>, <span style="color: #666666">0</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>setOrientation(QtCore<span style="color: #666666">.</span>Qt<span style="color: #666666">.</span>Vertical)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;speed_slider&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>valueChanged<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>getSpeed)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLCDNumber(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">120</span>, <span style="color: #666666">160</span>, <span style="color: #666666">64</span>, <span style="color: #666666">23</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;speed&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>setPalette(palette)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">130</span>, <span style="color: #666666">130</span>, <span style="color: #666666">47</span>, <span style="color: #666666">25</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;speed_lable&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable<span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;color:#00497a;&#39;</span>)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QSlider(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">230</span>, <span style="color: #666666">290</span>, <span style="color: #666666">350</span>, <span style="color: #666666">51</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setLayoutDirection(QtCore<span style="color: #666666">.</span>Qt<span style="color: #666666">.</span>RightToLeft)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setMinimum(<span style="color: #666666">0</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setMaximum(<span style="color: #666666">180</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setSingleStep(<span style="color: #666666">10</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setPageStep(<span style="color: #666666">10</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setProperty(<span style="color: #BA2121">&quot;value&quot;</span>, <span style="color: #666666">90</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setSliderPosition(<span style="color: #666666">90</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setOrientation(QtCore<span style="color: #666666">.</span>Qt<span style="color: #666666">.</span>Horizontal)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;angle_slider&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>valueChanged<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>getAngle)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLCDNumber(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">370</span>, <span style="color: #666666">250</span>, <span style="color: #666666">64</span>, <span style="color: #666666">23</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;angle&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>display(<span style="color: #666666">90</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>setPalette(palette)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">380</span>, <span style="color: #666666">220</span>, <span style="color: #666666">47</span>, <span style="color: #666666">25</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;angle_lable&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable<span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;color:#00497a;&#39;</span>)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>sStop <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QPushButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>sStop<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">360</span>, <span style="color: #666666">120</span>, <span style="color: #666666">91</span>, <span style="color: #666666">41</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>sStop<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;stop&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>sStop<span style="color: #666666">.</span>setStyleSheet(style)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>sStop<span style="color: #666666">.</span>clicked<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>setSStop)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>squit <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QPushButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>squit<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">670</span>, <span style="color: #666666">340</span>, <span style="color: #666666">91</span>, <span style="color: #666666">41</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>squit<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;quit&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>squit<span style="color: #666666">.</span>setStyleSheet(style2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>squit<span style="color: #666666">.</span>clicked<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>windowQuit)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton_2 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QToolButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton_2<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">750</span>, <span style="color: #666666">0</span>, <span style="color: #666666">25</span>, <span style="color: #666666">19</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton_2<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;toolButton_2&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>sliderhelpWindow <span style="color: #666666">=</span> Ui_SliderHelpWindow()
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>saction1 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;help.png&quot;</span>), <span style="color: #BA2121">u&quot;Help&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>saction2 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;about.png&quot;</span>), <span style="color: #BA2121">u&quot;About&quot;</span>)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>popupMenu <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QMenu()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>popupMenu<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>saction1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>popupMenu<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>saction2)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>saction1<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>sliderHelp)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>saction2<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>about)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton_2<span style="color: #666666">.</span>setMenu( <span style="color: #008000">self</span><span style="color: #666666">.</span>popupMenu )
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton_2<span style="color: #666666">.</span>setDefaultAction( <span style="color: #008000">self</span><span style="color: #666666">.</span>saction1 )
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton_2<span style="color: #666666">.</span>setPopupMode( QtWidgets<span style="color: #666666">.</span>QToolButton<span style="color: #666666">.</span>InstantPopup )
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>addTab(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1, <span style="color: #BA2121">&quot;&quot;</span>)
+        
+        <span style="color: #408080; font-style: italic"># ************************ #</span>
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QWidget()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;tab_2&quot;</span>)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>forward <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QPushButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>forward<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">330</span>, <span style="color: #666666">130</span>, <span style="color: #666666">91</span>, <span style="color: #666666">41</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>forward<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;forward&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>forward<span style="color: #666666">.</span>setStyleSheet(style)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>forward<span style="color: #666666">.</span>clicked<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>setForward)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>backward <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QPushButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>backward<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">330</span>, <span style="color: #666666">290</span>, <span style="color: #666666">91</span>, <span style="color: #666666">41</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>backward<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;backward&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>backward<span style="color: #666666">.</span>setStyleSheet(style)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>backward<span style="color: #666666">.</span>clicked<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>setBackward)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>left <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QPushButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>left<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">200</span>, <span style="color: #666666">210</span>, <span style="color: #666666">91</span>, <span style="color: #666666">41</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>left<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;left&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>left<span style="color: #666666">.</span>setStyleSheet(style)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>left<span style="color: #666666">.</span>clicked<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>setLeft)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>right <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QPushButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>right<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">470</span>, <span style="color: #666666">210</span>, <span style="color: #666666">91</span>, <span style="color: #666666">41</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>right<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;right&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>right<span style="color: #666666">.</span>setStyleSheet(style)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>right<span style="color: #666666">.</span>clicked<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>setRight)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bStop <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QPushButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bStop<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">330</span>, <span style="color: #666666">210</span>, <span style="color: #666666">91</span>, <span style="color: #666666">41</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bStop<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;stop&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bStop<span style="color: #666666">.</span>setStyleSheet(style)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bStop<span style="color: #666666">.</span>clicked<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>setBStop)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bquit <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QPushButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bquit<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">670</span>, <span style="color: #666666">340</span>, <span style="color: #666666">91</span>, <span style="color: #666666">41</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bquit<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;quit&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bquit<span style="color: #666666">.</span>setStyleSheet(style2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bquit<span style="color: #666666">.</span>clicked<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>windowQuit)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QToolButton(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">750</span>, <span style="color: #666666">0</span>, <span style="color: #666666">25</span>, <span style="color: #666666">19</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;toolButton&quot;</span>)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>baction1 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;help.png&quot;</span>), <span style="color: #BA2121">u&quot;Help&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>baction2 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;about.png&quot;</span>), <span style="color: #BA2121">u&quot;About&quot;</span>)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>popupMenu <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QMenu()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>popupMenu<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>baction1)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>popupMenu<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>baction2)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>baction1<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>buttonHelp)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>baction2<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>about)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton<span style="color: #666666">.</span>setMenu( <span style="color: #008000">self</span><span style="color: #666666">.</span>popupMenu )
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton<span style="color: #666666">.</span>setDefaultAction( <span style="color: #008000">self</span><span style="color: #666666">.</span>baction1 )
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton<span style="color: #666666">.</span>setPopupMode( QtWidgets<span style="color: #666666">.</span>QToolButton<span style="color: #666666">.</span>InstantPopup )
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>buttonhelpWindow <span style="color: #666666">=</span> Ui_ButtonHelpWindow()
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_2 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLCDNumber(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_2<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">260</span>, <span style="color: #666666">50</span>, <span style="color: #666666">64</span>, <span style="color: #666666">23</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_2<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;speed_2&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_2<span style="color: #666666">.</span>setPalette(palette)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_2 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLCDNumber(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_2<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">430</span>, <span style="color: #666666">50</span>, <span style="color: #666666">64</span>, <span style="color: #666666">23</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_2<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;angle_2&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_2<span style="color: #666666">.</span>setPalette(palette)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable_2 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable_2<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">270</span>, <span style="color: #666666">20</span>, <span style="color: #666666">47</span>, <span style="color: #666666">25</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable_2<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;speed_lable_2&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable_2<span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;color:#00497a;&#39;</span>)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable_2 <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QLabel(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable_2<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">442</span>, <span style="color: #666666">20</span>, <span style="color: #666666">47</span>, <span style="color: #666666">25</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable_2<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;angle_lable_2&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable_2<span style="color: #666666">.</span>setStyleSheet(<span style="color: #BA2121">&#39;color:#00497a;&#39;</span>)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>addTab(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2, <span style="color: #BA2121">&quot;&quot;</span>)
+
+        <span style="color: #408080; font-style: italic"># ************************ #</span>
+        
+        MainWindow<span style="color: #666666">.</span>setCentralWidget(<span style="color: #008000">self</span><span style="color: #666666">.</span>centralwidget)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menubar <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QMenuBar(MainWindow)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menubar<span style="color: #666666">.</span>setGeometry(QtCore<span style="color: #666666">.</span>QRect(<span style="color: #666666">0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">809</span>, <span style="color: #666666">21</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menubar<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;menubar&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QMenu(<span style="color: #008000">self</span><span style="color: #666666">.</span>menubar)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;menuAbout&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuSwitch <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QMenu(<span style="color: #008000">self</span><span style="color: #666666">.</span>menubar)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuSwitch<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;menuSwitch&quot;</span>)
+        
+        MainWindow<span style="color: #666666">.</span>setMenuBar(<span style="color: #008000">self</span><span style="color: #666666">.</span>menubar)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>statusbar <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QStatusBar(MainWindow)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>statusbar<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;statusbar&quot;</span>)
+        MainWindow<span style="color: #666666">.</span>setStatusBar(<span style="color: #008000">self</span><span style="color: #666666">.</span>statusbar)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionAbout <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;about.png&quot;</span>), <span style="color: #BA2121">u&#39;About&#39;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionAbout<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;actionAbout&quot;</span>)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchapp <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;android3.png&quot;</span>), <span style="color: #BA2121">u&#39;Switch to App&#39;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchapp<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;actionSwitchapp&quot;</span>)
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchgui <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;raspberry-pi-logo.png&quot;</span>), <span style="color: #BA2121">u&#39;Switch to GUI&#39;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchgui<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;actionSwitchgui&quot;</span>)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>aboutui <span style="color: #666666">=</span> Ui_AboutWindow()
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindowf <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;full.png&quot;</span>), <span style="color: #BA2121">u&#39;Switch to FullScreen&#39;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindowf<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;actionShowFull&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindown <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;normal.png&quot;</span>), <span style="color: #BA2121">u&#39;Switch to Normal&#39;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindown<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;actionShowNormal&quot;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionquit <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QAction(QtGui<span style="color: #666666">.</span>QIcon(<span style="color: #BA2121">&quot;quit.png&quot;</span>), <span style="color: #BA2121">u&#39;Quit&#39;</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionquit<span style="color: #666666">.</span>setObjectName(<span style="color: #BA2121">&quot;actionquit&quot;</span>)
+        
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionAbout<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>about)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchapp<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>app)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchgui<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>gui)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindowf<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>showf)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindown<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>shown)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionquit<span style="color: #666666">.</span>triggered<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>windowQuit)
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindowf)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>addSeparator()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menubar<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>menuAction())
+        
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindown)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>addSeparator()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menubar<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>menuAction())
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>actionAbout)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>addSeparator()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menubar<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>menuAction())
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>actionquit)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>addSeparator()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menubar<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>menuAction())
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuSwitch<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchapp)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuSwitch<span style="color: #666666">.</span>addSeparator()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menubar<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>menuSwitch<span style="color: #666666">.</span>menuAction())
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuSwitch<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchgui)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuSwitch<span style="color: #666666">.</span>addSeparator()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menubar<span style="color: #666666">.</span>addAction(<span style="color: #008000">self</span><span style="color: #666666">.</span>menuSwitch<span style="color: #666666">.</span>menuAction())
+
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>retranslateUi(MainWindow)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>setCurrentIndex(<span style="color: #666666">2</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>currentChanged<span style="color: #666666">.</span>connect(<span style="color: #008000">self</span><span style="color: #666666">.</span>changed)
+        QtCore<span style="color: #666666">.</span>QMetaObject<span style="color: #666666">.</span>connectSlotsByName(MainWindow)
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">retranslateUi</span>(<span style="color: #008000">self</span>, MainWindow):
+        _translate <span style="color: #666666">=</span> QtCore<span style="color: #666666">.</span>QCoreApplication<span style="color: #666666">.</span>translate
+        MainWindow<span style="color: #666666">.</span>setWindowTitle(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;RasControl GUI&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Speed&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Angle&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>sStop<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Stop&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bquit<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Quit&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton_2<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;...&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>setTabText(<span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>indexOf(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_1), _translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Slider&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>forward<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Forward&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>backward<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Backward&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>left<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Left&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>right<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Right&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>bStop<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Stop&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>toolButton<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;...&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_lable_2<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Speed&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_lable_2<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Angle&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>squit<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Quit&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>setTabText(<span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>indexOf(<span style="color: #008000">self</span><span style="color: #666666">.</span>tab_2), _translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Button&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuAbout<span style="color: #666666">.</span>setTitle(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;?&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>menuSwitch<span style="color: #666666">.</span>setTitle(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Switch&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionAbout<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;About&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchapp<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Switch to app&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionSwitchgui<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Switch to GUI&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindowf<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Switch to FullScreen&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionwindown<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Switch to Normal&quot;</span>))
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>actionquit<span style="color: #666666">.</span>setText(_translate(<span style="color: #BA2121">&quot;MainWindow&quot;</span>, <span style="color: #BA2121">&quot;Quit&quot;</span>))
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setGui</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>changed()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>setEnabled(<span style="color: #008000">True</span>)
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">windowQuit</span>(<span style="color: #008000">self</span>):
+        QtCore<span style="color: #666666">.</span>QCoreApplication<span style="color: #666666">.</span>instance()<span style="color: #666666">.</span>quit()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">showf</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>main<span style="color: #666666">.</span>showFullScreen()  
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">shown</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>main<span style="color: #666666">.</span>showNormal()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">about</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>aboutui<span style="color: #666666">.</span>show()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">app</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>changed()
+        <span style="color: #008000; font-weight: bold">global</span> enabled, appui, add
+        appui<span style="color: #666666">.</span>setIp(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\t\t</span><span style="color: #BA2121">Server: &quot;</span><span style="color: #666666">+</span>add)
+        appui<span style="color: #666666">.</span>show()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>setEnabled(<span style="color: #008000">False</span>)
+        enabled <span style="color: #666666">=</span> <span style="color: #008000">False</span>
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">gui</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>changed()
+        <span style="color: #008000; font-weight: bold">global</span> enabled, appui
+        appui<span style="color: #666666">.</span>hide()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>tabWidget<span style="color: #666666">.</span>setEnabled(<span style="color: #008000">True</span>)
+        enabled <span style="color: #666666">=</span> <span style="color: #008000">True</span>
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">buttonHelp</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>buttonhelpWindow<span style="color: #666666">.</span>show()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">sliderHelp</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>sliderhelpWindow<span style="color: #666666">.</span>show()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">getSpeed</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000; font-weight: bold">global</span> speed
+        speed <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>value()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>display(speed)
+        Motor()
+    
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">getAngle</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000; font-weight: bold">global</span> angle
+        angle <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>value()
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>display(angle)
+        Servo()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setSStop</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>changed()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">changed</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000; font-weight: bold">global</span> angle, speed
+        angle <span style="color: #666666">=</span> <span style="color: #666666">90</span>
+        speed <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed<span style="color: #666666">.</span>display(<span style="color: #666666">0</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle<span style="color: #666666">.</span>display(<span style="color: #666666">90</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_2<span style="color: #666666">.</span>display(<span style="color: #666666">0</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_2<span style="color: #666666">.</span>display(<span style="color: #666666">90</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_slider<span style="color: #666666">.</span>setValue(<span style="color: #666666">0</span>)
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_slider<span style="color: #666666">.</span>setValue(<span style="color: #666666">90</span>)
+        Servo()
+        Motor()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setBackward</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000; font-weight: bold">global</span> speed
+        <span style="color: #008000; font-weight: bold">if</span> speed<span style="color: #666666">&gt;=-80</span>:
+            speed <span style="color: #666666">-=</span> <span style="color: #666666">20</span> 
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_2<span style="color: #666666">.</span>display(speed)
+        Motor()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setForward</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000; font-weight: bold">global</span> speed
+        <span style="color: #008000; font-weight: bold">if</span> speed<span style="color: #666666">&lt;=80</span>:
+            speed <span style="color: #666666">+=</span> <span style="color: #666666">20</span> 
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>speed_2<span style="color: #666666">.</span>display(speed)
+        Motor()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setRight</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000; font-weight: bold">global</span> angle
+        <span style="color: #008000; font-weight: bold">if</span> angle<span style="color: #666666">&gt;=10</span>:
+            angle <span style="color: #666666">-=</span> <span style="color: #666666">10</span>
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_2<span style="color: #666666">.</span>display(angle)
+        Servo()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setLeft</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000; font-weight: bold">global</span> angle
+        <span style="color: #008000; font-weight: bold">if</span> angle<span style="color: #666666">&lt;=170</span>:
+            angle <span style="color: #666666">+=</span> <span style="color: #666666">10</span> 
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>angle_2<span style="color: #666666">.</span>display(angle)
+        Servo()
+
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setBStop</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>changed()
+        
+<span style="color: #408080; font-style: italic"># ********************************************* #</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">mainServer</span>():
+
+    p <span style="color: #666666">=</span> subprocess<span style="color: #666666">.</span>Popen(<span style="color: #BA2121">&quot;ifconfig wlan0 | grep &#39;inet &#39; | cut -d&#39; &#39; -f10&quot;</span>, shell<span style="color: #666666">=</span><span style="color: #008000">True</span>, stdout<span style="color: #666666">=</span>subprocess<span style="color: #666666">.</span>PIPE, stderr<span style="color: #666666">=</span>subprocess<span style="color: #666666">.</span>STDOUT)
+    ip <span style="color: #666666">=</span> p<span style="color: #666666">.</span>stdout<span style="color: #666666">.</span>readlines()[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>decode(<span style="color: #BA2121">&quot;utf-8&quot;</span>)<span style="color: #666666">.</span>rstrip()<span style="color: #666666">.</span>strip(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>)
+    port <span style="color: #666666">=</span> <span style="color: #666666">9999</span>
+    <span style="color: #008000; font-weight: bold">global</span> add
+    add <span style="color: #666666">=</span> ip<span style="color: #666666">+</span><span style="color: #BA2121">&quot;:&quot;</span><span style="color: #666666">+</span><span style="color: #008000">str</span>(port)
+
+    <span style="color: #008000; font-weight: bold">try</span>:
+        <span style="color: #408080; font-style: italic"># Create the server, binding to localhost on port 9999</span>
+        server <span style="color: #666666">=</span> socketserver<span style="color: #666666">.</span>TCPServer((ip, port), MyTCPHandler)
+        <span style="color: #408080; font-style: italic"># Activate the server; this will keep running until you</span>
+        <span style="color: #408080; font-style: italic"># interrupt the program with Ctrl-C</span>
+        server<span style="color: #666666">.</span>serve_forever()
+
+        
+    <span style="color: #008000; font-weight: bold">except</span>(<span style="color: #D2413A; font-weight: bold">OSError</span>):
+        <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Something happend!&quot;</span>)
+
+
+<span style="color: #408080; font-style: italic"># *********************************************** #  </span>
+<span style="color: #408080; font-style: italic"># Servo motor control</span>
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Servo</span>():
+    b <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+    <span style="color: #008000; font-weight: bold">global</span> preAngle, angle, strength, a
+    <span style="color: #008000; font-weight: bold">if</span>(<span style="color: #AA22FF; font-weight: bold">not</span> enabled):
+        <span style="color: #008000; font-weight: bold">if</span>(a<span style="color: #666666">!=0</span>):
+            <span style="color: #008000; font-weight: bold">if</span>(angle<span style="color: #666666">==0</span> <span style="color: #AA22FF; font-weight: bold">and</span> b<span style="color: #666666">!=1</span> <span style="color: #AA22FF; font-weight: bold">and</span> strength<span style="color: #666666">==0</span>):
+                setCenter()
+                b <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+            <span style="color: #008000; font-weight: bold">elif</span>(preAngle<span style="color: #666666">+3</span> <span style="color: #666666">&gt;=</span> angle <span style="color: #AA22FF; font-weight: bold">and</span> preAngle<span style="color: #666666">-3</span> <span style="color: #666666">&lt;=</span> angle):
+                <span style="color: #008000; font-weight: bold">pass</span>
+            <span style="color: #008000; font-weight: bold">else</span>:
+                SetAngle(angle<span style="color: #666666">-180</span> <span style="color: #008000; font-weight: bold">if</span> angle<span style="color: #666666">&gt;=180</span> <span style="color: #008000; font-weight: bold">else</span> angle)
+                preAngle <span style="color: #666666">=</span> angle
+                b <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+    <span style="color: #008000; font-weight: bold">else</span>:
+        SetAngle(angle)
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #408080; font-style: italic"># set the servo to center (90degree)</span>
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">setCenter</span>():
+    GPIO<span style="color: #666666">.</span>output(<span style="color: #666666">3</span>, <span style="color: #008000">True</span>)
+    servopwm<span style="color: #666666">.</span>ChangeDutyCycle(<span style="color: #666666">7</span>)
+    sleep(<span style="color: #666666">0.0001</span>)
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #408080; font-style: italic"># set the servo to angle</span>
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">SetAngle</span>(angle):
+    duty <span style="color: #666666">=</span> angle <span style="color: #666666">/</span> <span style="color: #666666">18.0</span> <span style="color: #666666">+</span> <span style="color: #666666">2</span>
+    GPIO<span style="color: #666666">.</span>output(<span style="color: #666666">3</span>, <span style="color: #008000">True</span>)
+    servopwm<span style="color: #666666">.</span>ChangeDutyCycle(duty)
+    sleep(<span style="color: #666666">0.0001</span>)
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #408080; font-style: italic"># Motor control    </span>
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Motor</span>():
+    <span style="color: #008000; font-weight: bold">global</span> a, speed, preSpeed
+    b <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+    <span style="color: #008000; font-weight: bold">if</span>(<span style="color: #AA22FF; font-weight: bold">not</span> enabled):
+        <span style="color: #008000; font-weight: bold">if</span>(a<span style="color: #666666">!=0</span>):
+            <span style="color: #008000; font-weight: bold">if</span>(speed <span style="color: #666666">==</span> <span style="color: #666666">0</span> <span style="color: #AA22FF; font-weight: bold">and</span> b <span style="color: #666666">==</span> <span style="color: #666666">0</span>):
+                b <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+                stop()
+            <span style="color: #008000; font-weight: bold">elif</span>(preSpeed<span style="color: #666666">+1</span> <span style="color: #666666">&gt;=</span> speed <span style="color: #AA22FF; font-weight: bold">and</span> preSpeed<span style="color: #666666">-1</span> <span style="color: #666666">&lt;=</span> speed):
+                <span style="color: #008000; font-weight: bold">pass</span>
+            <span style="color: #008000; font-weight: bold">elif</span>(speed <span style="color: #666666">!=</span> <span style="color: #666666">0</span>):
+                preSpeed <span style="color: #666666">=</span> speed
+                b <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+                forward(speed) <span style="color: #008000; font-weight: bold">if</span> speed<span style="color: #666666">&gt;0</span> <span style="color: #008000; font-weight: bold">else</span> backward(speed)
+    <span style="color: #008000; font-weight: bold">else</span>:
+        <span style="color: #008000; font-weight: bold">if</span>(speed <span style="color: #666666">==</span> <span style="color: #666666">0</span>):
+            stop()
+        <span style="color: #008000; font-weight: bold">else</span>:
+            forward(speed) <span style="color: #008000; font-weight: bold">if</span> speed<span style="color: #666666">&gt;0</span> <span style="color: #008000; font-weight: bold">else</span> backward(speed)
+                
+                
+
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">stop</span>():
+    motorpwm<span style="color: #666666">.</span>ChangeDutyCycle(<span style="color: #666666">0</span>)
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">forward</span>(speed):
+    motorpwm<span style="color: #666666">.</span>ChangeDutyCycle(speed) 
+    GPIO<span style="color: #666666">.</span>output(<span style="color: #666666">16</span>,GPIO<span style="color: #666666">.</span>HIGH)
+    GPIO<span style="color: #666666">.</span>output(<span style="color: #666666">18</span>,GPIO<span style="color: #666666">.</span>LOW)
+    GPIO<span style="color: #666666">.</span>output(<span style="color: #666666">22</span>,GPIO<span style="color: #666666">.</span>HIGH)
+    sleep(<span style="color: #666666">0.0001</span>)
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">backward</span>(speed):
+    motorpwm<span style="color: #666666">.</span>ChangeDutyCycle(<span style="color: #666666">-</span>speed) 
+    GPIO<span style="color: #666666">.</span>output(<span style="color: #666666">16</span>,GPIO<span style="color: #666666">.</span>LOW)
+    GPIO<span style="color: #666666">.</span>output(<span style="color: #666666">18</span>,GPIO<span style="color: #666666">.</span>HIGH)
+    GPIO<span style="color: #666666">.</span>output(<span style="color: #666666">22</span>,GPIO<span style="color: #666666">.</span>HIGH)
+    sleep(<span style="color: #666666">0.0001</span>)
+
+
+
+<span style="color: #408080; font-style: italic"># *********************************************** #</span>
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">main</span>(f):
+    
+    start_new_thread(mainServer, ())
+    
+    app <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QApplication(sys<span style="color: #666666">.</span>argv)
+    MainWindow <span style="color: #666666">=</span> QtWidgets<span style="color: #666666">.</span>QMainWindow()
+
+    <span style="color: #008000; font-weight: bold">global</span> appui, ui
+    
+    ui <span style="color: #666666">=</span> Ui_MainWindow()
+    ui<span style="color: #666666">.</span>setupUi(MainWindow)
+    
+    appui <span style="color: #666666">=</span> Ui_AppWindow()
+    
+    <span style="color: #008000; font-weight: bold">if</span>(f <span style="color: #666666">==</span> <span style="color: #666666">1</span>):
+        MainWindow<span style="color: #666666">.</span>showFullScreen()
+    <span style="color: #008000; font-weight: bold">else</span>:
+        MainWindow<span style="color: #666666">.</span>showNormal()
+    sys<span style="color: #666666">.</span>exit(app<span style="color: #666666">.</span>exec_())
+
+<span style="color: #408080; font-style: italic"># ------------------------------------------------------------------ #</span>
+
+<span style="color: #008000; font-weight: bold">if</span> __name__ <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;__main__&quot;</span>:
+
+    main(<span style="color: #666666">1</span>)
+    
+    
+</pre></div>
+</body>
+</html>
