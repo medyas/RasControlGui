@@ -155,9 +155,6 @@ class Ui_AppWindow(QtWidgets.QWidget):
         self.setLayout(self.layout)
         self.setGeometry(100, 100, 400, 200)
 
-        a = self.angle
-        s = self.speed
-
     def update(self, speed, angle):
         self.angle.display(angle)
         self.speed.display(speed)
@@ -218,19 +215,14 @@ class Ui_AboutWindow(QtWidgets.QWidget):
         self.layout.addWidget(QtWidgets.QLabel("are connected to the raspberry pi."))
         self.layout.addWidget(QtWidgets.QLabel("\t\tCreated by ©Medyas"))
 
-
         iset = QtWidgets.QLabel(self)
         iset.setPixmap(QtGui.QPixmap("isetr.png").scaled(400,90)) 
         self.layout.addWidget(iset)
-
-        
-        
+   
         self.hb = QtWidgets.QHBoxLayout()
         
         self.hb.addWidget(pic)
         self.hb.addLayout(self.layout)
-
-        
         
         self.setWindowTitle("RasControl GUI: About")
         self.setLayout(self.hb)
@@ -249,7 +241,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-
         
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setGeometry(QtCore.QRect(0, 0, 780, 460))
@@ -555,7 +546,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.tabWidget.setEnabled(True)
         enabled = True
             
-
     def buttonHelp(self):
         self.buttonhelpWindow.show()
 
@@ -726,12 +716,9 @@ def backward(speed):
 # *********************************************** #
 
 def main(f):
-##    start_new_thread(Servo,())
-##    start_new_thread(Motor,())
     
     start_new_thread(mainServer, ())
 
-    
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
 
